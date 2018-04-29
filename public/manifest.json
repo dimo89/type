@@ -1,0 +1,10 @@
+{
+  "short_name": "Type",
+  "name": "Type",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Type"
+  },
+  "version": "1.0"
+}
