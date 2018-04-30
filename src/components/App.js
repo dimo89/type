@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
+import words from 'an-array-of-english-words';
+import WordCheck from './WordCheck';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      words: ["one", "random", "dog", "plane", "house"],
+      words,
       randomWord: '',
       typeValue: '',
-      correctWordsCount: 0,
-      falseWordsCount: 0,
     }
 
     this.handleType = this.handleType.bind(this);
-    this.checkWord = this.checkWord.bind(this);
+    this.resetWord = this.resetWord.bind(this);
   }
 
   getRandomWord() {
@@ -22,27 +22,11 @@ class App extends Component {
     return this.state.words[randomNumber];
   }
 
-  checkWord() {
-    if(this.state.typeValue.slice(0, -1) === this.state.randomWord) {
-      console.log('yes');
-      this.setState((prevState) => ({
-        ...this.state,
-        correctWordsCount: prevState.correctWordsCount + 1,
-      }));
-    } else {
-      console.log('no');
-      this.setState({
-        ...this.state,
-        falseWordsCount: this.state.falseWordsCount + 1,
-      });
-    }
-    console.log(this.state.correctWordsCount);
-  }
-
   resetWord() {
     this.setState({
       ...this.state,
-      typeValue: ''
+      typeValue: '',
+      randomWord: this.getRandomWord(),
     });
   }
 
@@ -52,12 +36,6 @@ class App extends Component {
     this.setState({
       ...this.state,
       typeValue: value,
-    }, () => {
-      console.log(this.state);
-      if(this.state.typeValue.slice(-1) === ' ') {
-        this.checkWord();
-        this.resetWord();
-      }
     });
   }
 
@@ -65,8 +43,6 @@ class App extends Component {
     this.setState({
       ...this.state,
       randomWord: this.getRandomWord(),
-      correctWordsCount: 0,
-      falseWordsCount: 0,
     });
   }
 
@@ -80,8 +56,11 @@ class App extends Component {
           value={this.state.typeValue}
           onChange={this.handleType}
         />
-        <div>{this.state.correctWordsCount}</div>
-        <div>{this.state.falseWordsCount}</div>
+        <WordCheck
+          typedValue={this.state.typeValue}
+          randomWord={this.state.randomWord}
+          resetWord={this.resetWord}
+        />
       </div>
     );
   }
