@@ -13,16 +13,21 @@ class WordCheck extends React.Component {
     }
   }
 
+  updateState(items) {
+    this.setState({
+      ...this.state,
+      ...items,
+    });
+  }
+
   checkWord() {
     if(this.props.typedValue.slice(0, -1) === this.props.randomWord) {
-      this.setState({
-        ...this.state,
+      this.updateState({
         lettersCount: this.state.lettersCount + this.props.typedValue.length,
         correctWordsCount: this.state.correctWordsCount + 1,
       });
     } else {
-      this.setState({
-        ...this.state,
+      this.updateState({
         lettersCount: this.state.lettersCount + this.props.typedValue.length,
         falseWordsCount: this.state.falseWordsCount + 1,
       });
@@ -32,8 +37,7 @@ class WordCheck extends React.Component {
   }
 
   resetAllCounters() {
-    this.setState({
-      ...this.state,
+    this.updateState({
       lettersCount: 0,
       correctWordsCount: 0,
       falseWordsCount: 0,

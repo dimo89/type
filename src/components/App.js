@@ -9,7 +9,6 @@ class App extends Component {
     super();
 
     this.state = {
-      words,
       randomWord: '',
       typeValue: '',
       enableTimer: false,
@@ -24,22 +23,27 @@ class App extends Component {
     this.resetTimer = this.resetTimer.bind(this);
   }
 
-  getRandomWord() {
-    const randomNumber = Math.floor(Math.random() * this.state.words.length);
-    return this.state.words[randomNumber];
-  }
-
-  resetWord() {
+  updateState(items) {
     this.setState({
       ...this.state,
-      typeValue: '',
-      randomWord: this.getRandomWord(),
+      ...items,
     });
   }
 
+  getRandomWord() {
+    const randomNumber = Math.floor(Math.random() * words.length);
+    return words[randomNumber];
+  }
+
+  resetWord() {
+    this.updateState({
+      typeValue: '',
+      randomWord: this.getRandomWord()
+    })
+  }
+
   handleType(e) {
-    this.setState({
-      ...this.state,
+    this.updateState({
       typeValue: e.target.value,
       enableTimer: true,
       resetTime: false,
@@ -48,23 +52,18 @@ class App extends Component {
   }
 
   timeIsUp(timeStatus) {
-    this.setState({
-      ...this.state,
+    this.updateState({
       timeIsUp: true,
       typeValue: 'Time is up!',
     });
   }
 
   componentDidMount() {
-    this.setState({
-      ...this.state,
-      randomWord: this.getRandomWord(),
-    });
+    this.updateState({ randomWord: this.getRandomWord() });
   }
 
   resetTimer() {
-    this.setState({
-      ...this.state,
+    this.updateState({
       enableTimer: false,
       timeIsUp: false,
       typeValue: '',
