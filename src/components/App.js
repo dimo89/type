@@ -22,7 +22,6 @@ class App extends Component {
     this.resetWord = this.resetWord.bind(this);
     this.timeIsUp = this.timeIsUp.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   getRandomWord() {
