@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles.css';
 import words from 'an-array-of-english-words';
 import WordCheck from './WordCheck';
+import Timer from './Timer';
 
 class App extends Component {
   constructor() {
@@ -11,10 +12,16 @@ class App extends Component {
       words,
       randomWord: '',
       typeValue: '',
+      enableTimer: false,
+      timeIsUp: false,
+      resetTime: false,
     }
 
     this.handleType = this.handleType.bind(this);
     this.resetWord = this.resetWord.bind(this);
+    this.timeIsUp = this.timeIsUp.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   getRandomWord() {
@@ -31,11 +38,23 @@ class App extends Component {
   }
 
   handleType(e) {
-    const value = e.target.value;
-
     this.setState({
       ...this.state,
-      typeValue: value,
+      typeValue: e.target.value,
+      enableTimer: true,
+      resetTime: false,
+    });
+  }
+
+  handleKeyDown(e) {
+    console.log(e.key);
+  }
+
+  timeIsUp(timeStatus) {
+    this.setState({
+      ...this.state,
+      timeIsUp: true,
+      typeValue: 'Time is up!',
     });
   }
 
@@ -46,6 +65,28 @@ class App extends Component {
     });
   }
 
+  resetTimer() {
+    this.setState({
+      ...this.state,
+      enableTimer: false,
+      timeIsUp: false,
+      typeValue: '',
+      resetTime: true,
+    })
+  }
+
+  getRestartButton() {
+    return this.state.timeIsUp && (
+      <button
+        className="RestartButton"
+        type="reset"
+        onClick={this.resetTimer}
+      >
+        Restart
+      </button>
+    );
+  }
+
   render() {
     return (
       <div className="App">
@@ -53,14 +94,22 @@ class App extends Component {
         <input
           autoFocus
           className="Input"
+          disabled={this.state.timeIsUp}
           value={this.state.typeValue}
           onChange={this.handleType}
+          onKeyDown={this.handleKeyDown}
         />
         <WordCheck
           typedValue={this.state.typeValue}
           randomWord={this.state.randomWord}
           resetWord={this.resetWord}
         />
+        <Timer
+          enableTimer={this.state.enableTimer}
+          timeIsUp={this.timeIsUp}
+          resetTime={this.state.resetTime}
+        />
+        {this.getRestartButton()}
       </div>
     );
   }

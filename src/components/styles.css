@@ -1,0 +1,61 @@
+.App {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  color: #002b33;
+  height: 260px;
+  width: 350px;
+}
+
+.Word {
+  color: #00d8ff;
+  font-size: 40px;
+}
+
+.Input {
+  border: 0;
+  border-bottom: 2px solid #0097b2;
+  width: 80%;
+  font-size: 40px;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+  background: transparent;
+  color: #222222;
+}
+
+.Input:focus {
+  outline: 0;
+}
+
+.WordCheck {
+  margin-top: 4px;
+}
+
+.CorrectWordsCount {
+  color: #00b274;
+  font-size: 32px;
+}
+
+.FalseWordsCount {
+  color: #ff2700;
+  font-size: 32px;
+}
+
+.RestartButton {
+  background-color: #0097b2;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.Timer {
+  font-size: 20px;
+  margin: 6px 0px;
+  color: #0097b2;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import './styles.css';
 
 class WordCheck extends React.Component {
   constructor(props) {
@@ -36,8 +37,8 @@ class WordCheck extends React.Component {
   render() {
     return (
       <div className="WordCheck">
-        <div className="CorrectWordsCount">Correct words count: {this.state.correctWordsCount}</div>
-        <div className="FalseWordsCount">False words count: {this.state.falseWordsCount}</div>
+        <div className="CorrectWordsCount">Correct words: {this.state.correctWordsCount}</div>
+        <div className="FalseWordsCount">False words: {this.state.falseWordsCount}</div>
       </div>
     )
   }
