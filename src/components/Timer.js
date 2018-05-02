@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SECONDS_INIT_VALUE = 60;
+const SECONDS_INIT_VALUE = 3;
 
 class Timer extends React.Component{
   constructor(props) {

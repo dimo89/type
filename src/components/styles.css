@@ -35,12 +35,12 @@
 
 .CorrectWordsCount {
   color: #00b274;
-  font-size: 32px;
+  font-size: 20px;
 }
 
 .FalseWordsCount {
   color: #ff2700;
-  font-size: 32px;
+  font-size: 20px;
 }
 
 .RestartButton {
@@ -58,4 +58,14 @@
   font-size: 20px;
   margin: 6px 0px;
   color: #0097b2;
+}
+
+.WordsPerMinute {
+  font-size: 20px;
+  color: #001519;
+}
+
+.LettersCount {
+  font-size: 20px;
+  color: #001519;
 }

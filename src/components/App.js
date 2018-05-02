@@ -15,6 +15,7 @@ class App extends Component {
       enableTimer: false,
       timeIsUp: false,
       resetTime: false,
+      resetCounters: false,
     }
 
     this.handleType = this.handleType.bind(this);
@@ -43,11 +44,8 @@ class App extends Component {
       typeValue: e.target.value,
       enableTimer: true,
       resetTime: false,
+      resetCounters: false,
     });
-  }
-
-  handleKeyDown(e) {
-    console.log(e.key);
   }
 
   timeIsUp(timeStatus) {
@@ -72,7 +70,8 @@ class App extends Component {
       timeIsUp: false,
       typeValue: '',
       resetTime: true,
-    })
+      resetCounters: true,
+    });
   }
 
   getRestartButton() {
@@ -97,12 +96,12 @@ class App extends Component {
           disabled={this.state.timeIsUp}
           value={this.state.typeValue}
           onChange={this.handleType}
-          onKeyDown={this.handleKeyDown}
         />
         <WordCheck
           typedValue={this.state.typeValue}
           randomWord={this.state.randomWord}
           resetWord={this.resetWord}
+          resetCounters={this.state.resetCounters}
         />
         <Timer
           enableTimer={this.state.enableTimer}
